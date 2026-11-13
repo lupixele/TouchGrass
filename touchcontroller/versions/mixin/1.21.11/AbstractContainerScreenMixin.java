@@ -39,9 +39,6 @@ public abstract class AbstractContainerScreenMixin<T extends AbstractContainerMe
     protected T menu;
 
     @Shadow
-    protected Font font;
-
-    @Shadow
     protected boolean isQuickCrafting;
 
     @Shadow
@@ -362,7 +359,7 @@ public abstract class AbstractContainerScreenMixin<T extends AbstractContainerMe
             ItemStack carried = this.menu.getCarried();
             guiGraphics.nextStratum();
             guiGraphics.renderItem(carried, touchX - 8, touchY - 8);
-            guiGraphics.renderItemDecorations(this.font, carried, touchX - 8, touchY - 8);
+            guiGraphics.renderItemDecorations(Minecraft.getInstance().font, carried, touchX - 8, touchY - 8);
         }
 
         // 5. Bedrock Green Selection Frame around active / selected slot
@@ -400,7 +397,7 @@ public abstract class AbstractContainerScreenMixin<T extends AbstractContainerMe
         guiGraphics.fill(btnX, shiftY + btnHeight - 1, btnX + btnWidth, shiftY + btnHeight, shiftBorder);
         guiGraphics.fill(btnX, shiftY + 1, btnX + 1, shiftY + btnHeight - 1, shiftBorder);
         guiGraphics.fill(btnX + btnWidth - 1, shiftY + 1, btnX + btnWidth, shiftY + btnHeight - 1, shiftBorder);
-        guiGraphics.drawCenteredString(this.font, this.touchcontroller$shiftActive ? "§l⇧ SHIFT" : "⇧ SHIFT", btnX + btnWidth / 2, shiftY + 7, shiftText);
+        guiGraphics.drawCenteredString(Minecraft.getInstance().font, this.touchcontroller$shiftActive ? "§l⇧ SHIFT" : "⇧ SHIFT", btnX + btnWidth / 2, shiftY + 7, shiftText);
 
         // --- DROP BUTTON ---
         int dropBg = 0xBB1E1E1E;
@@ -411,7 +408,7 @@ public abstract class AbstractContainerScreenMixin<T extends AbstractContainerMe
         guiGraphics.fill(btnX, dropY + btnHeight - 1, btnX + btnWidth, dropY + btnHeight, dropBorder);
         guiGraphics.fill(btnX, dropY + 1, btnX + 1, dropY + btnHeight - 1, dropBorder);
         guiGraphics.fill(btnX + btnWidth - 1, dropY + 1, btnX + btnWidth, dropY + btnHeight - 1, dropBorder);
-        guiGraphics.drawCenteredString(this.font, "⎋ DROP", btnX + btnWidth / 2, dropY + 7, 0xFFCCCCCC);
+        guiGraphics.drawCenteredString(Minecraft.getInstance().font, "⎋ DROP", btnX + btnWidth / 2, dropY + 7, 0xFFCCCCCC);
     }
 
     @Unique
