@@ -385,6 +385,7 @@ object BuiltinWidgets {
             ),
             name = Texts.WIDGET_EXIT_BUTTON_NAME,
             align = Align.RIGHT_TOP,
+            offset = IntOffset(20, 20),
         )
     }
 

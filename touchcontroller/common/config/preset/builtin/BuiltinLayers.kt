@@ -109,7 +109,10 @@ data class BuiltinLayers(
             BuiltinLayerConditionKey(BuiltinLayerCondition.IN_GUI) to LayerConditions.Value.REQUIRE,
         ),
         widgets = persistentListOf(
-            BuiltinWidgets.exit[textureSet],
+            BuiltinWidgets.exit[textureSet].cloneBase(
+                align = Align.RIGHT_TOP,
+                offset = IntOffset(20, 20),
+            ),
         ),
     )
 

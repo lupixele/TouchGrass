@@ -36,6 +36,7 @@ import top.fifthlight.touchcontroller.common.layout.queue.DrawQueue
 import top.fifthlight.touchcontroller.common.layout.widget.game.Hud
 import top.fifthlight.touchcontroller.common.model.ControllerHudModel
 import top.fifthlight.touchcontroller.common.model.TouchStateModel
+import top.fifthlight.touchcontroller.common.state.PointerState
 import top.fifthlight.touchcontroller.common.platform.capabilities.PlatformCapabilitiesHolder
 import top.fifthlight.touchcontroller.common.platform.provider.PlatformProvider
 import top.fifthlight.touchcontroller.common.util.offset.fixAspectRadio
@@ -51,6 +52,12 @@ object RenderEvents {
     private var prevWidth = 0
     private var prevHeight = 0
     private var prevInGui = false
+
+    @JvmStatic
+    fun getPrimaryPointerCoords(): FloatArray? {
+        val pointer = touchStateModel.pointers.values.firstOrNull { it.state !is PointerState.Released } ?: return null
+        return floatArrayOf(pointer.position.x, pointer.position.y)
+    }
 
     @JvmStatic
     fun onRenderStart() {
