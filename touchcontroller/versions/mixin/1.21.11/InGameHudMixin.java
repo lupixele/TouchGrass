@@ -108,4 +108,12 @@ public abstract class InGameHudMixin {
             }
         }
     }
+
+    @Inject(
+            method = "render",
+            at = @At("TAIL")
+    )
+    private void renderVoltHud(GuiGraphics context, DeltaTracker deltaTracker, CallbackInfo ci) {
+        VoltTouchEngine.getInstance().renderHud(context);
+    }
 }

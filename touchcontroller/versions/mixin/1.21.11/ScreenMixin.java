@@ -25,5 +25,6 @@ public abstract class ScreenMixin {
         guiGraphics.nextStratum();
         var canvas = new CanvasImpl(guiGraphics);
         RenderEvents.onScreenRender(canvas);
+        VoltTouchEngine.getInstance().renderHud(guiGraphics);
     }
 }

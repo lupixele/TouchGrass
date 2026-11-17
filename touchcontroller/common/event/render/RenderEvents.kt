@@ -43,6 +43,10 @@ import top.fifthlight.touchcontroller.common.util.offset.fixAspectRadio
 import top.fifthlight.touchcontroller.proxy.client.PlatformCapability
 import top.fifthlight.touchcontroller.proxy.message.*
 
+fun interface PointerEventListener {
+    fun onPointer(type: Int, id: Int, x: Float, y: Float)
+}
+
 object RenderEvents {
     private val logger = LoggerFactory.getLogger(RenderEvents::class.java)
     private val window: WindowHandle = WindowHandleFactory.of()
@@ -52,6 +56,9 @@ object RenderEvents {
     private var prevWidth = 0
     private var prevHeight = 0
     private var prevInGui = false
+
+    @JvmStatic
+    var pointerListener: PointerEventListener? = null
 
     @JvmStatic
     fun getPrimaryPointerCoords(): FloatArray? {
@@ -95,6 +102,7 @@ object RenderEvents {
                 val message = platform.pollEvent() ?: break
                 when (message) {
                     is AddPointerMessage -> {
+                        val isNew = !touchStateModel.pointers.containsKey(message.index)
                         touchStateModel.addPointer(
                             index = message.index,
                             position = Offset(
@@ -102,13 +110,18 @@ object RenderEvents {
                                 y = message.y,
                             )
                         )
+                        pointerListener?.onPointer(if (isNew) 0 else 1, message.index, message.x, message.y)
                     }
 
                     is RemovePointerMessage -> {
                         touchStateModel.removePointer(message.index)
+                        pointerListener?.onPointer(2, message.index, 0f, 0f)
                     }
 
-                    ClearPointerMessage -> touchStateModel.clearPointer()
+                    ClearPointerMessage -> {
+                        touchStateModel.clearPointer()
+                        pointerListener?.onPointer(3, -1, 0f, 0f)
+                    }
 
                     is CapabilityMessage -> {
                         PlatformCapability.entries.firstOrNull { it.id == message.capability }?.let {

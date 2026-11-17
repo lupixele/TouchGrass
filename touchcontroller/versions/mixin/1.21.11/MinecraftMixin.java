@@ -17,6 +17,7 @@ import top.fifthlight.touchcontroller.common.model.TouchControllerLoadStatus;
 public abstract class MinecraftMixin {
     @Inject(method = "runTick", at = @At("HEAD"))
     public void onRenderStart(boolean tick, CallbackInfo ci) {
+        VoltTouchEngine.getInstance().tick();
         var instance = TouchControllerLoadStatus.INSTANCE;
         if (instance.isLoaded()) {
             RenderEvents.onRenderStart();
