@@ -15,7 +15,7 @@ import top.fifthlight.touchcontroller.common.layout.align.Align
 import top.fifthlight.touchcontroller.common.layout.withAlign
 import top.fifthlight.touchcontroller.common.state.PointerState
 
-private const val INVENTORY_SLOT_HOLD_DROP_TIME = 40
+private const val INVENTORY_SLOT_HOLD_DROP_TIME = 25
 
 private fun Context.InventorySlot(index: Int) {
     val gameFeatures: GameFeatures = GameFeaturesProviderFactory.of().gameFeatures
@@ -27,6 +27,7 @@ private fun Context.InventorySlot(index: Int) {
         when (val state = pointer.state) {
             PointerState.New -> {
                 pointer.state = PointerState.InventorySlot(index, timer.clientTick)
+                slot.select = true
             }
 
             is PointerState.InventorySlot -> {
