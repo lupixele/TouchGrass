@@ -23,7 +23,6 @@ import top.fifthlight.touchcontroller.common.config.data.StatusConfig;
 import top.fifthlight.touchcontroller.common.config.holder.GlobalConfigHolder;
 import top.fifthlight.touchcontroller.common.event.render.RenderEvents;
 import top.fifthlight.touchcontroller.common.model.ControllerHudModel;
-import top.fifthlight.touchcontroller.volt.v1_21_11.VoltTouchEngine;
 
 @Mixin(Gui.class)
 public abstract class InGameHudMixin {
@@ -108,13 +107,5 @@ public abstract class InGameHudMixin {
                 context.fill(x + 20 * i + 2, y + 18 - height, x + 20 * i + 18, y + 18, 0xFF00BB00);
             }
         }
-    }
-
-    @Inject(
-            method = "render",
-            at = @At("TAIL")
-    )
-    private void renderVoltHud(GuiGraphics context, DeltaTracker deltaTracker, CallbackInfo ci) {
-        VoltTouchEngine.getInstance().renderHud(context);
     }
 }

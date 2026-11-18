@@ -12,13 +12,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.fifthlight.touchcontroller.common.event.render.RenderEvents;
 import top.fifthlight.touchcontroller.common.model.TouchControllerLoadStatus;
-import top.fifthlight.touchcontroller.volt.v1_21_11.VoltTouchEngine;
 
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin {
     @Inject(method = "runTick", at = @At("HEAD"))
     public void onRenderStart(boolean tick, CallbackInfo ci) {
-        VoltTouchEngine.getInstance().tick();
         var instance = TouchControllerLoadStatus.INSTANCE;
         if (instance.isLoaded()) {
             RenderEvents.onRenderStart();
