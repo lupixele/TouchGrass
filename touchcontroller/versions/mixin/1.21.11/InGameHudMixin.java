@@ -23,6 +23,7 @@ import top.fifthlight.touchcontroller.common.config.data.StatusConfig;
 import top.fifthlight.touchcontroller.common.config.holder.GlobalConfigHolder;
 import top.fifthlight.touchcontroller.common.event.render.RenderEvents;
 import top.fifthlight.touchcontroller.common.model.ControllerHudModel;
+import top.fifthlight.touchcontroller.volt.v1_21_11.VoltTouchEngine;
 
 @Mixin(Gui.class)
 public abstract class InGameHudMixin {

@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.fifthlight.touchcontroller.common.config.data.StatusConfig;
 import top.fifthlight.touchcontroller.common.config.holder.GlobalConfigHolder;
+import top.fifthlight.touchcontroller.volt.v1_21_11.VoltTouchEngine;
 
 @Mixin(MouseHandler.class)
 abstract class DisableMouseDirectionMixin {

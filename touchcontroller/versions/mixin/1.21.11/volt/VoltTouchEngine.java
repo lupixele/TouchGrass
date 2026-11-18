@@ -3,12 +3,11 @@
  * Ported directly from Volt Launcher (entitybrian69-bit/Volt-launcher: touch.rs & custom.rs)
  */
 
-package top.fifthlight.touchcontroller.mixin.v1_21_11;
+package top.fifthlight.touchcontroller.volt.v1_21_11;
 
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.world.inventory.Slot;
 import top.fifthlight.touchcontroller.extension.v1_21_11.ClickableKeyBinding;
 import top.fifthlight.touchcontroller.extension.v1_21_11.GameModeWithBreakingProgress;
 
@@ -51,7 +50,6 @@ public class VoltTouchEngine {
 
     // Settings
     private boolean enabled = true;
-    private float globalOpacity = 1.0f;
     private float touchSensitivity = 1.0f;
 
     private VoltTouchEngine() {
@@ -310,18 +308,6 @@ public class VoltTouchEngine {
         } else if ("key.keyboard.f5".equals(token)) {
             if (pressed) {
                 mc.options.setCameraType(mc.options.getCameraType().cycle());
-            }
-        } else {
-            // Fallback: look up key in KeyMapping registry
-            Map<String, KeyMapping> all = KeyMappingAccessor.touchcontroller$getAllKeyMappings();
-            if (all != null) {
-                KeyMapping mapping = all.get(token);
-                if (mapping != null) {
-                    mapping.setDown(pressed);
-                    if (pressed && mapping instanceof ClickableKeyBinding clickable) {
-                        clickable.touchController$click();
-                    }
-                }
             }
         }
     }

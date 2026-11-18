@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.fifthlight.combine.backend.minecraft.render.v1_21_11.CanvasImpl;
 import top.fifthlight.touchcontroller.common.event.render.RenderEvents;
 import top.fifthlight.touchcontroller.common.gal.gamestate.GameState;
+import top.fifthlight.touchcontroller.volt.v1_21_11.VoltTouchEngine;
 
 @Mixin(Screen.class)
 public abstract class ScreenMixin {

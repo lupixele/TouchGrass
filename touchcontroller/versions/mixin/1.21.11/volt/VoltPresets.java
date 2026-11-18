@@ -3,7 +3,7 @@
  * Ported directly from Volt Launcher (entitybrian69-bit/Volt-launcher: presets.rs)
  */
 
-package top.fifthlight.touchcontroller.mixin.v1_21_11;
+package top.fifthlight.touchcontroller.volt.v1_21_11;
 
 import java.util.ArrayList;
 import java.util.List;
